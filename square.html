@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		<link rel="stylesheet" type="text/css" href="square_style.css">
+			
+		
+	</head>
+	<body>
+		<div class="container" id="squarecontainer">
+			
+		</div>
+			<script>
+
+			function getRandomColor() {
+	  			var hexadecimal = '0123456789ABCDEF';
+	  			var color = '#';
+	  			for (var i = 0; i < 6; i++) {
+	    			color += hexadecimal[Math.floor(Math.random() * 16)];
+	  			}
+	  			return color;
+			}
+
+			function addSquare(){
+				var randomcolor = getRandomColor();
+				var square = document.createElement("div");
+
+				var x = Math.floor(Math.random() * 650) + 11;
+				var y = Math.floor(Math.random() * 450) + 11;
+
+				/*
+				box.setAttribute(
+					'style',
+  					'background: randomcolor; color: white; position: absolute; width: 50px; height: 50px; left: x + "px"; top: y + "px";',
+				);
+				*/
+				
+				square.style.background = randomcolor;
+				square.style.color = "white";
+				square.style.position = "absolute";
+				square.style.width = "50px";
+				square.style.height = "50px";
+				square.style.left = x + "px";
+				square.style.top = y + "px";
+				
+
+				document.getElementById("squarecontainer").appendChild(square);
+			}
+
+			function changeColors(){
+				var c = document.getElementById("squarecontainer").children;
+    			for (i = 0; i < c.length; i++) {
+    				var randomcolor = getRandomColor();
+        			c[i].style.background = randomcolor;
+    			}
+			}
+
+			function deleteAll(){
+				var squarelist = document.getElementById("squarecontainer");
+	    		while (squarelist.hasChildNodes()) {
+	        		squarelist.removeChild(squarelist.firstChild);
+	    		}
+			}
+
+		</script>
+		<input type="button" onclick="addSquare()" value="Add Square">
+		<input type="button" onclick="changeColors()" value="Change Colors">
+		<input type="button" onclick="deleteAll()" value="Delete All">
+	</body>
+</html>
